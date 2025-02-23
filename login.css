@@ -1,0 +1,182 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f8f8;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw; /* تأكد أن التصميم يغطي الشاشة بالكامل */
+}
+
+ /* ضبط الصفحة بحجم الشاشة بدون تمرير */
+ html, body {
+    margin: 0;
+    padding: 0;
+    width: 100vw; /* عرض الصفحة بالكامل */
+    height: 100vh; /* ارتفاع الصفحة بالكامل */
+    overflow: hidden; /* إخفاء أي تمرير */
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+ /* تصميم الشريط العلوي */
+ .top-bar {
+    display: flex;
+    justify-content: space-between; /* توزيع العناصر يمين ويسار */
+    align-items: center;
+    background-color: #1b262c; /* لون الخلفية */
+    color: white; /* لون النص */
+    padding: 10px 10px; /* مسافات داخلية */
+    font-size: 20px; /* حجم النص */
+    font-weight: bold; /* جعل النص سميك */
+    position: fixed; /* تثبيت الشريط أعلى الصفحة */
+    width: 100%; /* جعله يمتد على عرض الصفحة */
+    top: 0; /* وضعه في أعلى الصفحة */
+    left: 0;
+    z-index: 1000; /* ضمان ظهوره فوق كل العناصر */
+}
+
+/* تصميم زر الإغلاق */
+.close-btn {
+    background: rgb(65, 34, 34);
+    color: white;
+    border: none;
+    padding: 5px 15px;
+    font-size: 18px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.close-btn:hover {
+    background: darkred;
+}
+
+/* إضافة هامش علوي لباقي المحتوى حتى لا يختفي تحت الشريط */
+body {
+    margin-top: 50px;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: #f4f4f4;
+}
+
+/* ضبط الحاوية الأساسية لتملأ الشاشة */
+.container {
+    display: flex;
+    width: 100vw;  /* جعل العرض يغطي الشاشة */
+    height: 100vh; /* جعل الارتفاع يغطي الشاشة */
+    background: white;
+    border: 2px solid #ccc;
+}
+
+/* ضبط القائمة الجانبية */
+.sidebar {
+    width: 20%;
+    background: #ffffff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 20px;
+}
+
+/* زر المستخدم في القائمة */
+.user-btn {
+    width: 80%;
+    padding: 10px;
+    margin: 10px 0;
+    background:#00A0D1;
+ 
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+/* القسم الرئيسي */
+.main {
+    width: 50%;
+    padding: 20px;
+}
+
+/* تعديل صندوق تسجيل الدخول */
+.login-box {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column; /* جعل الحقول تحت بعضها */
+    gap: 10px;
+}
+
+/* مجموعة الإدخال بحيث يكون النص بجانب الحقل */
+.input-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* جعل الاسم بجانب الحقل */
+label {
+    font-weight: bold;
+    width: 50px; /* تحديد عرض ثابت للأسماء */
+    text-align: right; /* محاذاة الاسم إلى اليمين */
+}
+
+/* تنسيق حقول الإدخال */
+input {
+    flex-grow: 1; /* السماح للحقل بأخذ المساحة المتاحة */
+    padding: 5px;
+    border: 1px solid #aaa;
+}
+
+/* تعديل تخطيط الأزرار */
+.keypad {
+    display: flex;
+    align-items: center;
+    gap: 80px; /* مسافة بين الأزرار وزر ENTER */
+}
+
+.keys {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 أعمدة متساوية */
+    gap: 8px; /* مسافة بين الأزرار */
+    width: 300px; /* عرض المجموعة */
+}
+
+/* تعديل حجم الأزرار نفسها */
+.key, .delete {
+    width: 120px; /* جعل الأزرار أعرض */
+    height: 80px; /* تعديل الارتفاع ليكون متناسق */
+    font-size: 30px; /* تكبير الخط داخل الأزرار */
+    background: #ccc;
+    border: none;
+    cursor: pointer;
+}
+.enter-btn {
+    writing-mode: vertical-rl; /* جعل النص بالطول */
+    text-orientation: upright; /* الحفاظ على استقامة الأحرف */
+    height: 350px; /* نفس ارتفاع الأزرار الثلاثة */
+    width: 90px; /* تحديد عرض الزر */
+    font-size: 30px;
+    background: #ccc;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none; /* إزالة التأثيرات الخاصة بالروابط */
+    color: black; /* لون النص */
+}
+/* ضبط اللوجو */
+.logo {
+    width: 60%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo img {
+    width: 80%;
+}

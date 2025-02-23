@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لوحة التحكم - الموظفين</title>
+    <link rel="stylesheet" href="dash.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+       
+</head>
+<body>
+    <div class="sidebar">
+        <img src="image/logo.png" alt="Logo">
+        <div class="username">Akwad Soft</div>
+        <div class="menu">
+            <a href="dash.html"><button>⌂  الرئيسية</button></a>
+            <div class="dropdown">
+            <a href="employees.html">
+                <button class="btn btn-primary">👥 الموظفين</button> </a>
+            </div>
+            <div class="dropdown">
+                <a href="clients.html">
+                    <button class="btn btn-primary">🏢 العملاء</button></a>           
+             </div>
+             <div class="dropdown">
+            <a href="Suppliers.html"><button>🚚 الموردين </button></a>
+        </div>
+            <div class="dropdown">
+                <button>💲  المبيعات</button>
+                <div class="submenu">
+                    <div class="dropdown">
+                    <a href="sales.html"><button>  المبيعات</button></a>
+                </div>
+                <div class="dropdown">
+                    <a href="sales-list.html"><button> مرتجعات المبيعات</button></a>
+                </div>  
+                </div>
+            </div>
+    
+            <div class="dropdown">
+                <button>🛍 الاصناف</button>
+                    <div class="submenu">
+                        <a href="product.html"><button>الاصناف</button></a>
+                    <a href="Units.html"><button>الوحدات</button></a>
+                    <a href="Sections.html"><button>الاقسام</button></a>
+                    <a href="group.html"><button>المجموعات</button></a>
+                </div>
+            </div>
+
+            <div class="dropdown">
+            <a href="page7.html"><button>🔧 الصيانه</button></a>
+            </div>
+
+            <div class="dropdown">
+            <a href="page8.html"><button>💳 المصروفات</button></a>
+            </div>
+
+            <div class="dropdown">
+            <a href="purchases.html"><button class="btn btn-primary">🛍 المشتريات</button> </a> 
+            </div>
+
+            <div class="dropdown">
+            <a href="page10.html"><button>🔄 مرتجعات مشتريات</button></a>
+            </div>
+
+            <div class="dropdown">
+            <a href="page12.html"><button>📋 تقارير الصيانة</button></a>
+            </div>
+
+            <div class="dropdown">
+            <a href="Stores.html"><button>📋 المخازن</button></a>
+            </div>
+
+            <div class="dropdown">
+            <a href="Cabinets.html"><button>🏛  الخزائن</button></a>
+        </div>
+        </div>
+    </div>
+    
+
+    <div class="content">
+        <div class="title-bar">
+            <span>الرئيسية</span>
+            <button class="logout">تسجيل الخروج</button>
+        </div>
+
+        <div class="contentt">
+            <h2>
+                العملاء
+                <span class="employee-count" id="employeeCount">1</span>
+            </h2>
+
+            <div class="d-flex justify-content-start mb-3">
+                <button class="btn btn-add me-2" onclick="clientstable()"><i class="fas fa-plus"></i> أضف</button>
+                <button class="btn btn-search me-2"><i class="fas fa-search"></i> بحث</button>
+                <input type="text" class="form-control w-25" id="searchBox" placeholder="بحث" onkeyup="searchEmployee()">
+            </div>
+            <div class="table-container">
+                <table class="table table-striped">
+                    <thead class="table-primary">
+                        <tr>
+                            <th rowspan="2">#</th>
+                            <th rowspan="2">الاسم</th>
+                            <th rowspan="2">رقم التليفون</th>
+                            <th rowspan="2">العنوان</th>
+                            <th rowspan="2">الايميل</th>
+                            <th rowspan="2">الحد الائتماني</th>
+                            <th colspan="2">القيمة</th> <!-- العنوان الرئيسي للعمود المقسوم -->
+                            <th rowspan="2">اجراءات</th> <!-- زرار الإجراءات يبقى كما هو -->
+                        </tr>
+                        <tr>
+                            <th>دائن</th>
+                            <th>مدين</th>
+                        </tr>
+                    </thead>
+                    <tbody id="clientstable">
+                        <tr>
+                            <td>1</td>
+                            <td>مصطفى محمد</td>
+                            <td>11111111111</td>
+                            <td>مهندس</td>
+                            <td>example@email.com</td>
+                            <td>5000</td>
+                             <td>5000</td>
+                             <td>5000</td>
+                            <td>
+                                <button class="btn btn-infoo btn-sm" onclick="viewEmployee(this)"><i class="fas fa-eye"></i> عرض</button>
+                                <button class="btn btn-info btn-sm" onclick="editEmployee(this)"><i class="fas fa-edit"></i> تعديل</button>
+                                <button class="btn btn-danger btn-sm" onclick="deleteEmployee(this)"><i class="fas fa-trash"></i> حذف</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                 </table>
+            </div>
+                </div>
+            <script src="dash.js"></script>
+</body>
+</html>

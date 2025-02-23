@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Screen</title>
+    <link rel="stylesheet" href="login.css">
+</head>
+<body>
+
+     <!-- الشريط العلوي -->
+     <div class="top-bar">
+        <span>Welcome</span>
+        <button class="close-btn" onclick="closePage()">❌</button>
+    </div>
+
+
+    <div class="container">
+        <div class="sidebar">
+            <button class="user-btn">admin</button>
+        </div>
+        <div class="main">
+            <div class="login-box">
+                <label>Username</label>
+                <input type="text" id="username">
+                <label>Password</label>
+                <input type="password" id="password">
+            </div>
+            <div class="keypad">
+                <div class="keys">
+                    <button class="key">7</button>
+                    <button class="key">8</button>
+                    <button class="key">9</button>
+                    <button class="key">4</button>
+                    <button class="key">5</button>
+                    <button class="key">6</button>
+                    <button class="key">1</button>
+                    <button class="key">2</button>
+                    <button class="key">3</button>
+                    <button class="key">0</button>
+                    <button class="delete">❌</button>
+                </div>
+                <button class="enter-btn" id="enter-btn">ENTER</button>
+            
+            </div>
+        </div>
+        <div class="logo">
+            <img src="image/logo.png" alt="Company Logo">
+        </div>
+    </div>
+    <script src="login.js"></script>
+</body>
+</html>

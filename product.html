@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لوحة التحكم - الموظفين</title>
+    <link rel="stylesheet" href="dash.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+    
+       
+</head>
+<body>
+    <div class="sidebar">
+        <img src="image/logo.png" alt="Logo">
+        <div class="username">Akwad Soft</div>
+        <div class="menu">
+            <a href="dash.html"><button>⌂  الرئيسية</button></a>
+            <div class="dropdown">
+            <a href="employees.html">
+                <button><i class="bi bi-people"></i> الموظفين</button>
+                </div>
+            <div class="dropdown">
+                <a href="clients.html">
+                    <button><i class="bi bi-building"></i> العملاء</button>
+                             </div>
+             <div class="dropdown">
+            <a href="Suppliers.html">
+                <button><i class="bi bi-truck"></i> الموردين</button></a>
+        </div>
+            <div class="dropdown">
+                <button><i class="bi bi-truck"></i> المبيعات</button>
+                <div class="submenu">
+                    <div class="dropdown">
+                    <a href="sales.html"><button>  المبيعات</button></a>
+                </div>
+                <div class="dropdown">
+                    <a href="sales-list.html"><button> مرتجعات المبيعات</button></a>
+                </div>  
+                </div>
+            </div>
+    
+            <div class="dropdown">
+                <button><i class="bi bi-truck"></i> الاصناف</button>
+                                    <div class="submenu">
+                        <a href="product.html"><button>الاصناف</button></a>
+                    <a href="Units.html"><button>الوحدات</button></a>
+                    <a href="Sections.html"><button>الاقسام</button></a>
+                    <a href="group.html"><button>المجموعات</button></a>
+                </div>
+            </div>
+
+            <div class="dropdown">
+            <a href="page7.html"><button><i class="bi bi-truck"></i> الصيانه</button></a>
+            </div>
+
+            <div class="dropdown">
+            <a href="page8.html"><button><i class="bi bi-truck"></i> المصروفات</button></a>
+            </div>
+
+            <div class="dropdown">
+            <a href="purchases.html"><button><i class="bi bi-truck"></i> المشتريات</button> </a> 
+            </div>
+
+            <div class="dropdown">
+            <a href="page10.html"><button><i class="bi bi-truck"></i> مرتجعات المشتريات</button></a>
+            </div>
+
+            <div class="dropdown">
+            <a href="page12.html"><button><i class="bi bi-truck"></i> تقارير الصيانه</button></a>
+            </div>
+
+            <div class="dropdown">
+            <a href="Stores.html"><button><i class="bi bi-truck"></i> المخازن</button></a>
+            </div>
+
+            <div class="dropdown">
+            <a href="Cabinets.html"><button><i class="bi bi-truck"></i> الخزائن</button></a>
+        </div>
+        </div>
+    </div>
+    
+
+    <div class="content">
+        <div class="title-bar">
+            <span>الرئيسية</span>
+            <button class="logout">تسجيل الخروج</button>
+        </div>
+
+        <div class="contentt">
+            <h2>
+                الاصناف
+                <span class="product-count" id="productCount">1</span>
+            </h2>
+
+            <div class="container mt-4">
+                <!-- زرار إضافة صنف جديد -->
+                <div class="d-flex justify-content-start mb-3">
+                    <button class="btn btn-primary me-2" onclick="openCard()"> <i class="fas fa-plus"></i> أضف صنف جديد</button>
+                    <button class="btn btn-secondary me-2"><i class="fas fa-search"></i> بحث</button>
+                    <input type="text" class="form-control w-25" id="searchBox" placeholder="بحث" onkeyup="searchProduct()">
+                </div>
+            
+                <!-- كارت الصنف (مخفي في البداية) -->
+                <div class="card product-card d-none" id="productCard">
+                    <div class="card-header bg-primary text-white d-flex justify-content-between">
+                        <h5>كارت الصنف</h5>
+                        <button class="btn btn-danger btn-sm" onclick="closeCard()">إغلاق</button>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <!-- صورة المنتج -->
+                            <div class="col-md-4 text-center">
+                                <div class="product-image">
+                                    <img id="previewImage" src="https://via.placeholder.com/200" alt="صورة المنتج">
+                                    <input type="file" id="imageUpload" class="d-none" accept="image/*" onchange="previewFile()">
+                                    <button class="btn btn-secondary mt-2" onclick="document.getElementById('imageUpload').click();">تحميل صورة</button>
+                                </div>
+                            </div>
+            
+                            <!-- الحقول -->
+                            <div class="col-md-8">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label>كود الصنف</label>
+                                        <input type="text" class="form-control" id="productCode">
+                                    </div>
+            
+                                    <div class="col-md-6">
+                                        <label>باركود الصنف</label>
+                                        <input type="text" class="form-control" id="barcode">
+                                    </div>
+            
+                                    <div class="col-md-6">
+                                        <label>SKU</label>
+                                        <input type="text" class="form-control" id="sku">
+                                    </div>
+            
+                                    <div class="col-md-6">
+                                        <label>نوع الصنف</label>
+                                        <select class="form-control" id="category">
+                                            <option>إلكترونيات</option>
+                                            <option>ملابس</option>
+                                            <option>أدوات منزلية</option>
+                                        </select>
+                                    </div>
+            
+                                    <div class="col-md-6">
+                                        <label>اسم الصنف</label>
+                                        <input type="text" class="form-control" id="productName">
+                                    </div>
+            
+                                    <div class="col-md-6">
+                                        <label>اسم الصنف EN</label>
+                                        <input type="text" class="form-control" id="productNameEN">
+                                    </div>
+            
+                                    <div class="col-md-6">
+                                        <label>سعر النصف جملة</label>
+                                        <input type="number" class="form-control" id="semiWholesalePrice">
+                                    </div>
+            
+                                    <div class="col-md-6">
+                                        <label>سعر البيع جملة</label>
+                                        <input type="number" class="form-control" id="wholesalePrice">
+                                    </div>
+            
+                                    <div class="col-md-6">
+                                        <label>سعر البيع قطاعي</label>
+                                        <input type="number" class="form-control" id="retailPrice">
+                                    </div>
+            
+                                    <div class="col-md-6">
+                                        <label>حد الطلب</label>
+                                        <input type="number" class="form-control" id="orderLimit">
+                                    </div>
+            
+                                    <div class="col-md-6">
+                                        <label>الوحدة</label>
+                                        <select class="form-control" id="unit">
+                                            <option>قطعة</option>
+                                            <option>كيلو</option>
+                                            <option>لتر</option>
+                                        </select>
+                                    </div>
+            
+                                    <div class="col-md-6 d-flex align-items-center">
+                                        <input type="checkbox" class="form-check-input me-2" id="active">
+                                        <label for="active">نشط</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+            
+                        <div class="mt-3">
+                            <button class="btn btn-success" id="saveBtn" onclick="saveProduct()">حفظ</button>
+                        </div>
+                    </div>
+                </div>
+            
+                <!-- الجدول -->
+                <table class="table table-bordered mt-4">
+                    <thead>
+                        <tr>
+                            <th>كود الصنف</th>
+                            <th>اسم الصنف</th>
+                            <th>نوع الصنف</th>
+                            <th>الوحدة</th>
+                            <th>السعر</th>
+                            <th>الإجراءات</th>
+                        </tr>
+                    </thead>
+                    <tbody id="productTable">
+                        <!-- المنتجات ستُضاف هنا -->
+                    </tbody>
+                </table>
+            </div>                
+
+
+            
+                <div class="table-container">
+                <table class="table table-striped">
+                    <thead class="table-primary">
+                        <tr>
+                            <th rowspan="2">#</th>
+                            <th rowspan="2">اسم الصنف </th>
+                            <th rowspan="2">اختيار القسم</th>
+                            <th rowspan="2">المجموعة</th>
+                            <th rowspan="2">وحدة</th>
+                            <th rowspan="2">سعر التكلفة</th>
+                            <th rowspan="2">سعر جملة</th>
+                            <th rowspan="2">سعر النصف جملة</th>
+                            <th rowspan="2">سعر القطاعي</th>
+                            <th rowspan="2">رصيد اول فترة</th>
+                            <th rowspan="2">حد الطلب</th>
+                            <th rowspan="2">الباركود</th>
+                            <th rowspan="2">الاجراءت</th>
+                        </tr>
+                    </thead>
+                    <tbody id="productTable">
+                        <tr>
+                            <td>1</td>
+                            <td>مصطفى محمد</td>
+                            <td>11111111111</td>
+                            <td>مهندس</td>
+                            <td>example@email.com</td>
+                            <td>5000</td>
+                            <td>5000</td>
+                            <td>2500</td>
+                            <td>5000</td>
+                            <td>5000</td>
+                            <td>5000</td>
+                            <td>5000</td>
+                            <td>
+                                <button class="btn btn-infoo btn-sm" onclick="viewproduct(this)"><i class="fas fa-eye"></i> عرض</button>
+                                <button class="btn btn-info btn-sm" onclick="editproduct(this)"><i class="fas fa-edit"></i> تعديل</button>
+                                <button class="btn btn-danger btn-sm" onclick="deleteproduct(this)"><i class="fas fa-trash"></i> حذف</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                 </table>
+            </div>
+                </div>
+            <script src="product.js"></script>
+</body>
+</html>

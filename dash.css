@@ -1,0 +1,607 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+html, body {
+    overflow: hidden; /* يمنع التمرير الأفقي والرأسي */
+    height: 100%; /* تأكد من أن الارتفاع يغطي الشاشة بالكامل */
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    display: flex;
+    height: 100vh;
+    background-color: #f4f4f4;
+}
+
+/* توسيع القائمة الجانبية */
+.sidebar {
+    width: 400px; /* تم زيادة العرض */
+    background-color: #2c2f31;
+    color: white;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    font-family: "Times New Roman", Times, serif;
+}
+
+.sidebar img {
+    width: 120px; /* تكبير حجم اللوجو */
+    margin-bottom: 10px;
+}
+
+.sidebar .username {
+    font-size: 30px; /* تكبير النص */
+    font-weight: bold;
+    margin-bottom: 15px;
+    font-family: "Times New Roman", Times, serif;
+}
+
+.menu {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+/* تكبير القوائم لتكون واضحة */
+.menu button {
+    width: 100%;
+    background-color: transparent;
+    color: white;
+    padding: 15px; /* زيادة المساحة الداخلية */
+    border: none;
+    cursor: pointer;
+    text-align: right;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    font-size: 20px; /* تكبير حجم النص */
+}
+
+/* شكل السهم */
+.menu .dropdown button::after {
+    content: "▼";
+    font-size: 14px; /* تكبير السهم */
+    color: white;
+    margin-left: 5px;
+}
+
+/* القوائم الفرعية */
+.submenu {
+    display: none;
+    background-color: #2c2f31;
+    padding: 10px;
+    width: 250px; /* توسيع القوائم الفرعية */
+    position: absolute;
+    right: 100%;
+    top: 0;
+    z-index: 10;
+    flex-direction: column;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.dropdown {
+    position: relative;
+}
+
+.dropdown:hover .submenu {
+    display: flex;
+}
+
+/* ضبط أزرار القوائم الفرعية */
+.submenu button {
+    width: 100%;
+    background-color: #ffffff;
+    color: black;
+    padding: 15px; /* تكبير حجم الأزرار */
+    border: none;
+    text-align: right;
+    font-size: 20px; /* تكبير الخط */
+}
+
+.submenu button:hover {
+    background-color: #ddd;
+}
+
+/* تغطية الشاشة بالكامل عند فتح النافذة */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+/* تصميم الصندوق الداخلي */
+.modal-box {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    width: 350px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    text-align: center;
+}
+
+/* ترتيب الحقول تحت بعض */
+.modal-box label {
+    display: block;
+    margin: 10px 0 5px;
+    font-weight: bold;
+}
+
+.modal-box input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* تصميم الأزرار */
+.modal-buttons {
+    margin-top: 15px;
+}
+
+.save-btn {
+    background: green;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.close-btn {
+    background: red;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.save-btn:hover {
+    background: darkgreen;
+}
+
+.close-btn:hover {
+    background: darkred;
+}
+
+
+.content {
+    flex: 1;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+.title-bar {
+    background-color: #ffffff;
+    color: rgb(0, 0, 0);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px;
+    font-family: "Times New Roman", Times, serif; /* تغيير نوع الخط */
+    text-decoration: none; /* يزيل أي خط تحت النص */
+    font-weight: bold; /* يجعل الخط سميكًا */
+}
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    margin-top: 20px;
+    flex: 1;
+    font-family: "Times New Roman", Times, serif; /* تغيير نوع الخط */
+}
+
+.grid-item {
+    padding: 20px;
+    text-align: right; /* جعل النصوص على اليمين */
+    border-radius: 20px;
+    font-size: 18px;
+    position: relative; /* لتمكين تحديد موقع الأيقونة */
+    font-family: "Times New Roman", Times, serif;
+    min-height: 150px;
+    padding-bottom: 40px;
+    color: white;
+   
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    overflow: hidden;
+}
+.grid-item .number {
+    color: black;
+    font-size: 22px;
+    font-weight: bold;
+}
+/* تحديد ألوان المربعات */
+.grid-item:nth-child(1) { background-color:  #007bff; } /* أحمر */
+.grid-item:nth-child(2) { background-color: #007bff; } /* أخضر */
+.grid-item:nth-child(3) { background-color: #007bff; } /* أزرق */
+.grid-item:nth-child(4) { background-color:  #007bff; } /* وردي */
+.grid-item:nth-child(5) { background-color:  #007bff; } /* برتقالي */
+.grid-item:nth-child(6) { background-color:  #007bff; } /* بنفسجي */
+.grid-item:nth-child(7) { background-color:  #007bff; } /* سماوي */
+.grid-item:nth-child(8) { background-color:  #007bff; } /* أصفر */
+.grid-item:nth-child(9) { background-color: #ff7a21; } /* بنفسجي غامق */
+.grid-item:nth-child(10) { background-color:#ff7a21; } /* أحمر غامق */
+.grid-item:nth-child(11) { background-color:#ff7a21; } /* أخضر فاتح */
+.grid-item:nth-child(12) { background-color:#ff7a21;} /* أزرق سماوي */
+.grid-item:nth-child(13) { background-color: #ff7a21;} /* وردي غامق */
+.grid-item:nth-child(14) { background-color:#ff7a21; } /* برتقالي فاتح */
+.grid-item:nth-child(15) { background-color:#ff7a21;} /* بنفسجي ملكي */
+.grid-item:nth-child(16) { background-color: #ff7a21;} /* سماوي فاتح */
+.grid-item:nth-child(17) { background-color:#ff7a21; } /* ليموني */
+.grid-item:nth-child(18) { background-color:#ff7a21;  } /* بنفسجي متوسط */
+.grid-item:nth-child(19) { background-color: #ff7a21;} /* وردي متوسط */
+.grid-item:nth-child(20) { background-color:#ff7a21;  } /* برتقالي محروق */
+/* تكبير النص لأول 8 مربعات */
+.grid-item:nth-child(-n+8) {
+    font-size: 24px;
+   
+    font-family: "Times New Roman", Times, serif; /* تغيير نوع الخط */
+}
+
+/* النصوص الفرعية لأول 8 مربعات */
+.grid-item:nth-child(-n+8) p {
+    margin-top: 10px;
+    font-size: 20px; /* تكبير النص */
+    color: white;
+  
+}
+
+/* النصوص الفرعية لبقية المربعات */
+.grid-item:nth-child(n+9) p {
+    margin-top: 10px;
+    color: white !important;
+    font-size: 22px; /* تكبير النص */
+}
+
+
+/* زر "عرض" */
+.grid-item:nth-child(-n+8)::after {
+    content: "⇦ عرض";
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    position: absolute;
+    bottom: 15px; /* جعله ينزل أكثر */
+    left: 20%; /* ضبط الموقع */
+    
+    font-size: 20px;
+    color: white;
+    cursor: pointer;
+
+    background-color: rgba(100, 100, 100, 0.6); /* خلفية سوداء شفافة */
+    padding: 5px 15px; /* مساحة داخلية لتوسيع الشريط */
+    border-radius: 5px; /* حواف دائرية */
+    width: 60%; /* العرض يكون أكبر من النص */
+    text-align: center;
+}
+
+.icon-logo {
+    width:  100px; /* حجم اللوجو */
+    height: auto;
+    position: absolute;
+    left: 10px; /* جعله على اليسار */
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+/* خط بين كل نصين داخل المربعات */
+.grid-item p:not(:last-child) {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+    padding-bottom: 5px;
+    margin-bottom: 5px;
+}
+
+.logout {
+    cursor: pointer;
+    background: none;
+    border: none;
+    color: rgb(0, 0, 0);
+    font-size: 18px;
+}
+
+/* تحسين تنسيق المحتوى */
+.contentt {
+    padding: 30px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0px 6px 8px rgba(0, 0, 0, 0.1);
+    margin: 20px;
+}
+
+.employee-count {
+    background-color: #28a745;
+    color: white;
+    padding: 5px 15px;
+    border-radius: 5px;
+    font-size: 20px;
+    margin-right: 10px; /* مسافة صغيرة بين العناصر */
+}
+
+/* تحسين تصميم الجدول */
+.table-container {
+    overflow-x: auto; /* لجعل الجدول قابلًا للتمرير أفقيًا على الشاشات الصغيرة */
+    background: #fff;
+    padding: 15px;
+    border-radius: 20px;
+}
+
+/* تحسين العناوين */
+h2 {
+    font-size: 32px;
+    font-weight: bold;
+    color: #333;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+/* تحسين تنسيق البحث */
+input[type="text"] {
+    border-radius: 10px;
+    padding: 10px;
+    font-size: 20px;
+}
+
+/* تحسين تنسيق الأزرار */
+.btn {
+    font-size:20px;
+    padding: 10px 14px;
+    border-radius: 5px;
+}
+
+.btn i {
+    margin-left: 5px; /* تباعد الأيقونات عن النص */
+}
+
+/* تحسين تصميم الأزرار بألوان مختلفة */
+.btn-add {
+    background-color: #15b83b; /* أخضر */
+    border: none;
+    color: white;
+}
+
+.btn-search {
+    background-color: #007bff; /* أزرق */
+    border: none;
+    color: white;
+}
+
+.btn-add:hover {
+    background-color: #218838; /* أخضر غامق عند التحويم */
+}
+
+.btn-search:hover {
+    background-color: #285686; /* أزرق غامق عند التحويم */
+}
+
+
+
+/* تصميم الأزرار */
+button {
+    padding: 8px 15px;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    color: white;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+/* زر العرض (أخضر) */
+.view-btn {
+    background-color: #28a745; /* لون أخضر */
+}
+.view-btn:hover {
+    background-color: #218838; /* أخضر أغمق عند التمرير */
+}
+
+/* زر التعديل (أزرق) */
+.edit-btn {
+    background-color: #007bff; /* لون أزرق */
+}
+.edit-btn:hover {
+    background-color: #0056b3; /* أزرق أغمق عند التمرير */
+}
+
+/* زر الحذف (أحمر) */
+.delete-btn {
+    background-color: #dc3545; /* لون أحمر */
+}
+.delete-btn:hover {
+    background-color: #c82333; /* أحمر أغمق عند التمرير */
+}
+
+/* تأثير عند النقر على الزر */
+button:active {
+    transform: scale(0.95);
+}
+/* تحسين تصميم الجدول */
+.table {
+    width: 100%;
+    text-align: right; /* محاذاة النصوص لليمين */
+}
+
+.table th {
+    background-color: #29527e;
+    color: white;
+    text-align: center;
+}
+
+.table td {
+    text-align: center;
+    vertical-align: middle;
+}
+
+/* تحسين شكل الإجراءات */
+td button {
+    margin: 5px;
+}
+
+.table-container {
+    overflow-x: auto;
+    background: #fff;
+    padding: 15px;
+    border-radius: 20px;
+}
+
+.table-primary th {
+    background-color: #007bff !important;
+    color: white;
+    padding: 15px; /* زيادة التباعد الداخلي */
+    height: 50px; /* تحديد ارتفاع الصف */
+    text-align: center; /* توسيط النص */
+    vertical-align: middle; /* توسيط المحتوى عموديًا */
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: #ffffff !important;
+}
+
+.table td:last-child {
+    text-align: right !important; /* محاذاة المحتوى إلى اليمين */
+}
+
+.table td:last-child button {
+    float: right; /* تحريك الأزرار إلى أقصى اليمين */
+    margin-right: 5px; /* إضافة مسافة صغيرة بين الأزرار */
+}
+
+.table td:last-child {
+    display: flex;
+    justify-content: flex-end; /* محاذاة العناصر إلى اليمين */
+    gap: 5px; /* تباعد بين الأزرار */
+}
+
+
+
+
+
+
+/* تصميم المودال بحجم أصغر */
+.modal-content { 
+    background: white; /* جعل خلفية المودال بيضاء */
+    padding: 20px; /* إضافة مسافة داخلية */
+    border-radius: 8px; /* جعل الحواف مستديرة */
+    width: 150px; /* ✅ تقليل عرض المودال */
+    max-width: 80%; /* ✅ التأكد من أنه لا يشغل مساحة كبيرة */
+    position: relative; /* تحديد موضعه بالنسبة للعناصر الأخرى */
+    text-align: right; /* محاذاة النص إلى اليمين */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3); /* إضافة ظل لتمييز المودال */
+}
+
+/* الخلفية المعتمة عند فتح المودال */
+.modal-overlay {
+    display: none; /* إخفاء المودال في البداية */
+    position: fixed; /* جعله ثابتًا ليظهر فوق المحتوى */
+    top: 0;
+    left: 0;
+    width: 50%; /* جعله يغطي الشاشة بالكامل */
+    height: 50%; /* جعله يغطي الارتفاع بالكامل */
+    background: rgba(255, 255, 255, 0.9); /* جعل الخلفية بيضاء شبه شفافة */
+    justify-content: center; /* محاذاته أفقيًا في المنتصف */
+    align-items: center; /* محاذاته رأسيًا في المنتصف */
+}
+
+/* ترتيب الحقول في عمود واحد بدلًا من عمودين */
+.form-grid {
+    display: grid; /* استخدام نظام الشبكة */
+    grid-template-columns: 1fr; /* ✅ الحقول في عمود واحد */
+    gap: 10px; /* إضافة مسافة بين الحقول */
+}
+
+/* ضبط تنسيق كل مجموعة إدخال */
+.form-group {
+    display: flex; /* استخدام نظام الفليكس */
+    flex-direction: column; /* ترتيب العناصر عموديًا */
+}
+
+/* تنسيق العناوين فوق الحقول */
+.form-group label {
+    font-weight: bold; /* جعل النص غامقًا */
+    font-size: 18px; /* ✅ تقليل حجم الخط */
+    margin-bottom: 5px; /* إضافة مسافة بين العنوان وحقل الإدخال */
+    color: #000000; /* جعل اللون أسود */
+}
+
+/* تنسيق حقول الإدخال */
+.form-group input {
+    width: 100%; /* جعل الحقل يمتد ليملأ العنصر بالكامل */
+    padding: 8px; /* إضافة مسافة داخل الحقل */
+    border: 1px solid #ccc; /* تعيين لون الحدود */
+    border-radius: 4px; /* جعل الحواف مستديرة */
+    background: white; /* جعل الخلفية بيضاء */
+    color: #000; /* جعل لون النص أسود */
+    font-size: 14px; /* ✅ تقليل حجم النص داخل الحقل */
+}
+
+/* أزرار الحفظ والإغلاق */
+.modal-buttons {
+    display: flex; /* استخدام الفليكس بوكس لترتيب الأزرار */
+    justify-content: center; /* محاذاتها في المنتصف */
+    gap: 10px; /* إضافة مسافة بين الأزرار */
+    margin-top: 15px; /* إبعاد الأزرار عن الحقول */
+}
+
+/* زر الحفظ */
+.save-btn {
+    background: green; /* لون الخلفية أخضر */
+    color: white; /* لون النص أبيض */
+    padding: 8px 12px; /* تحديد حجم الزر */
+    border: none; /* إزالة الحدود */
+    border-radius: 4px; /* جعل الحواف مستديرة */
+    cursor: pointer; /* تغيير المؤشر عند التمرير عليه */  
+}
+
+/* زر الإغلاق */
+.close-btn {
+    background: red; /* لون الخلفية أحمر */
+    color: white; /* لون النص أبيض */
+    padding: 8px 12px; /* تحديد حجم الزر */
+    border: none; /* إزالة الحدود */
+    border-radius: 4px; /* جعل الحواف مستديرة */
+    cursor: pointer; /* تغيير المؤشر عند التمرير عليه */
+}
+
+
+
+body {
+    background: #f4f4f4;
+    direction: rtl;
+    font-family: "Tajawal", sans-serif;
+}
+
+.product-card {
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease-in-out;
+}
+
+.product-image img {
+    width: 200px;
+    height: 200px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+}
+
+.product-image button {
+    width: 100%;
+}
+
+

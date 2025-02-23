@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>فاتورة بيع</title>
+    <link rel="stylesheet" href="sales.css">
+    <script defer src="sales.js"></script>
+</head>
+<body>
+
+    <div class="content">
+        <div class="title-bar">
+            <a href="dash.html" class="home-btn">الرئيسية</a>
+            <button class="logout">تسجيل الخروج</button>
+            <button class="close" onclick="closeContent()">X</button>
+        </div>
+    </div>
+    
+    <div class="button-container">
+        <button class="save">
+            💾 حفظ
+        </button>
+        <button class="new">
+            ➕ جديد
+        </button>
+        <button class="delete">
+            🗑️ حذف
+        </button>
+        <button class="search">
+            🔍 بحث
+        </button>
+        <button class="query">
+            ℹ️ استعلام عن سعر الصنف
+        </button>
+        <button class="finger">
+            🖨️ طباعة
+        </button>
+        </div>
+    <div class="container">
+        <header>
+            <h1 class="title">🧾فاتورة بيع</h1>
+            </header>
+    
+            <!-- الصف الأول -->
+            <div class="row">
+                <div class="form-row">
+                    <label for="namber">رقم الفاتورة:</label>
+                    <input type="text" id="search">
+                </div>
+                <div class="form-row">
+                    <label for="invoiceDate">تاريخ الفاتورة:</label>
+                    <input type="date" id="invoiceDate">
+                </div>
+                <div class="form-row">
+                    <label for="deliveryDate">تاريخ التوريد:</label>
+                    <input type="date" id="deliveryDate">
+                </div>
+                <div class="form-row">
+                    <label for="sellerName">اسم البائع:</label>
+                    <input type="text" id="sellerName">
+                </div>
+            </div>        
+            <!-- الصف الثاني -->
+            <div class="row">
+                <div class="form-row">
+                    <label for="branch">الفرع:</label>
+                    <input type="text" id="branch">
+                </div>
+                <div class="form-row">
+                    <label for="storage">المخزن:</label>
+                    <input type="text" id="storage">
+                </div>
+                <div class="form-row">
+                    <label for="userName">اسم المستخدم:</label>
+                    <input type="text" id="userName">
+                </div>
+                <div class="form-row">
+                    <label for="representativeName">اسم المندوب:</label>
+                    <input type="text" id="representativeName">
+                </div>
+            </div>
+        
+            <!-- خط فاصل بين الصفوف -->
+            <hr class="separator">
+        
+            <!-- الصف الثالث الجديد -->
+            <div class="row">
+                <div class="form-row">
+                    <label for="customerCode">كود العميل:</label>
+                    <input type="text" id="customerCode">
+                    <button onclick="searchCustomer()">بحث</button>
+                </div>
+                <div class="form-row">
+                    <label for="customerName">اسم العميل:</label>
+                    <input type="text" id="customerName">
+                </div>
+                <div class="form-row">
+                    <label for="priceType">نوع السعر:</label>
+                    <input type="text" id="priceType">
+                </div>
+                <div class="form-row">
+                    <label for="itemCode">كود الصنف:</label>
+                    <input type="text" id="itemCode">
+                </div>
+            </div>
+        
+            <!-- الصف الرابع الجديد -->
+            <div class="row">
+                <div class="form-row">
+                    <label for="itemType">نوع الصنف:</label>
+                    <input type="text" id="itemType">
+                </div>
+                <div class="form-row">
+                    <label for="itemName">اسم الصنف:</label>
+                    <input type="text" id="itemName">
+                </div>
+                <div class="form-row">
+                    <label for="unitPrice">تمن الوحدة:</label>
+                    <input type="text" id="unitPrice">
+                </div>
+                <div class="form-row">
+                    <label for="quantity">الكمية:</label>
+                    <input type="number" id="quantity">
+                </div>
+            </div>
+        
+<!-- زر إضافة فوق الجدول -->
+<button class="btn add-row">إضافة الي المبيعات</button>
+
+        <section class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>إجراءات</th> <!-- نقل عمود الإجراءات إلى أول الجدول -->
+                        <th>#</th>
+                        <th>كود الصنف</th>
+                        <th>اسم الصنف</th>
+                        <th>السعر</th>
+                        <th>الكمية</th>
+                        <th>إجمالي</th>
+                        <th>المخزن</th>
+                        <th>خصم</th>
+                        <th>السعر الأصلي</th>
+                        <th>بونص</th> <!-- إضافة خانة البونص -->
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <button class="btn edit">✏️</button>
+                            <button class="btn delete">❌</button>
+                        </td>
+                        <td>1</td>
+                        <td>233</td>
+                        <td>ميكس / فيناتستيك</td>
+                        <td>50.00</td>
+                        <td>1</td>
+                        <td>50.00</td>
+                        <td>1</td>
+                        <td>0.00</td>
+                        <td>50.00</td>
+                        <td>
+                            <!-- مربع الاختيار للبونص -->
+                            <input type="checkbox" class="bonus-checkbox">
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section class="tables-sectionn">
+            <!-- الجدول الأول -->
+            <div class="table-containerr table1">
+                <h3>اجمالي الفاتورة</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>عدد القطع</th>
+                            <th>خصم الاصناف</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>500</td>
+                            <td>000</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        
+            <!-- الجدول الثاني -->
+            <div class="table-containerr table2">
+                <h3>صافي الفاتورة</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>المبلغ المدفوع</th>
+                            <th>الباقي</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>0</td>
+                            <td>0</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        
+            <!-- الجدول الثالث -->
+            <div class="table-containerr table3">
+                <h3>الصافي بعد المرتجع</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>رقم فاتورة المرتجع</th>
+                            <th>و قيمتها</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>0</td>
+                            <td>0</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+   </div>
+</body>
+</html>
