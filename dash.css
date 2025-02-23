@@ -5,7 +5,7 @@
     font-family: Arial, sans-serif;
 }
 html, body {
-    overflow: hidden; /* يمنع التمرير الأفقي والرأسي */
+  
     height: 100%; /* تأكد من أن الارتفاع يغطي الشاشة بالكامل */
     margin: 0;
     padding: 0;
